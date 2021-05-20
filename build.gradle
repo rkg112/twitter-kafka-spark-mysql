@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        scala {
+            srcDirs = ['src/main/scala']
+        }
+    }
+}
+
+dependencies {
+    compile "org.scala-lang:scala-library:${scalaVersion}"
+    compile "com.google.guava:guava:${guavaVersion}"
+    compileOnly("org.apache.spark:spark-core_2.11:${sparkVersion}") {
+        exclude group: 'org.xerial.snappy', module: 'snappy-java'
+    }
+    compile("org.apache.spark:spark-streaming-kafka-0-10_2.11:${sparkVersion}") 
+    
+    compile("org.apache.kafka:kafka-clients:0.10.0.1")
+    compile("org.apache.spark:spark-sql-kafka-0-10_2.11:${sparkVersion}")
+    compile 'org.xerial.snappy:snappy-java:1.0.5'
+    compileOnly "org.apache.spark:spark-sql_2.11:${sparkVersion}"
+    compile "com.typesafe.scala-logging:scala-logging_2.11:3.7.2"
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile "mysql:mysql-connector-java:8.0.18"
+}
