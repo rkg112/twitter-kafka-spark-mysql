@@ -1,1 +1,9 @@
+Prequisites
+----------
+
+Kafka
+Spark
+MySQL
+
+
 
