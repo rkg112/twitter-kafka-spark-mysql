@@ -74,6 +74,7 @@ object SparkStreamingKube extends App {
     val writer1 = df2.writeStream
       .trigger(Trigger.ProcessingTime("30 seconds"))
       .outputMode("update")
+      .option("checkpointLocation", "path to the file in your local")
       .foreachBatch { (batchDF: DataFrame, batchId: Long) =>
         val batchDF_1 = batchDF.
         // Transform batchDF and write it to sink/target/persistent storage
